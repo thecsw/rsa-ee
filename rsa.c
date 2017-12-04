@@ -26,16 +26,16 @@ int main(int argc, char** argv) {
   mpz_powm(mt, c, d, n);
   char text[64];
   mpz_export(text, NULL, 1, 1, 0, 0, mt);
-  printf("Initial settings:");
-  gmp_printf("The n value: %Zd\n", n);
-  gmp_printf("The e value: %Zd\n", e);
-  gmp_printf("The d value: %Zd\n", d);
- 
-  printf("\tInput text: %s\n", argv[4]);
+  printf("\nInitial settings:\n");
+  gmp_printf("\tThe n value: %Zd\n", n);
+  gmp_printf("\tThe e value: %Zd\n", e);
+  gmp_printf("\tThe d value: %Zd\n", d);
+  printf("\nThe results:\n");
+  printf("\tInput text : %s\n", argv[4]);
   gmp_printf("\tConverted text : %Zd\n", m);
   gmp_printf("\tEncrypted text : %Zd\n", c);
   gmp_printf("\tDecrypted text : %Zd\n", mt);
-  printf("\tOutput text - %s\n", text);
+  printf("\tOutput text : %s\n", text);
 
 
   return 0;
