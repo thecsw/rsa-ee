@@ -37,6 +37,10 @@ int main(int argc, char** argv) {
   // Encrypting the message
   mpz_powm(c, m, e, n);
 
+  // Trying to make the cypher into a text
+  char enc[64];
+  mpz_export(enc, NULL, 1, 1, 0, 0, c);
+
   // Decrypting the message
   mpz_powm(mt, c, d, n);
 
@@ -49,12 +53,22 @@ int main(int argc, char** argv) {
   gmp_printf("\tThe n value: %Zd\n", n);
   gmp_printf("\tThe e value: %Zd\n", e);
   gmp_printf("\tThe d value: %Zd\n", d);
+
+  printf("\nAll following data will be shown as hexadecimal values.");
+  printf("\nIt's easier to present in this way than decimal.\n");
+  
+  printf("\nRSA keys:\n");
+  gmp_printf("\tPublic key  : (%#Zx, \n\t\t       %#Zx)\n", e, n);
+  gmp_printf("\tPrivate key : (%#Zx, \n\t\t       %#Zx)\n", d, n);
+  
   printf("\nThe results:\n");
-  printf("\tInput text : %s\n", argv[4]);
-  gmp_printf("\tConverted text : %Zd\n", m);
-  gmp_printf("\tEncrypted text : %Zd\n", c);
-  gmp_printf("\tDecrypted text : %Zd\n", mt);
-  printf("\tOutput text : %s\n", text);
+  printf("\tInput text :     %s\n", argv[4]);
+  gmp_printf("\tConverted text : %Zx\n", m);
+  gmp_printf("\tEncrypted text : %Zx\n", c);
+  printf("\tEncrypted text : %s\n", enc);
+  gmp_printf("\tDecrypted text : %Zx\n", mt);
+  printf("\tOutput text :    %s\n", text);
+
   // Clearing the memory and resetting it to NULL
   mpz_clears(n, e, d, m, c, mt, NULL);
   
