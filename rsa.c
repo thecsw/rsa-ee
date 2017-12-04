@@ -36,7 +36,7 @@ int main(int argc, char** argv) {
   gmp_printf("\tEncrypted text : %Zd\n", c);
   gmp_printf("\tDecrypted text : %Zd\n", mt);
   printf("\tOutput text : %s\n", text);
-
-
+  mpz_clears(n, e, d, m, c, mt, NULL);
+  printf("\nThank you for using rsa-ee!\nExiting...\n");
   return 0;
 }
