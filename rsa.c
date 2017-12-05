@@ -58,8 +58,8 @@ int main(int argc, char** argv) {
   printf("\nIt's easier to present in this way than decimal.\n");
   
   printf("\nRSA keys:\n");
-  gmp_printf("\tPublic key  : (%#Zx, \n\t\t       %#Zx)\n", e, n);
-  gmp_printf("\tPrivate key : (%#Zx, \n\t\t       %#Zx)\n", d, n);
+  gmp_printf("\tPublic key  :   (%#Zx, \n\t\t\t %#Zx)\n", e, n);
+  gmp_printf("\tPrivate key :   (%#Zx, \n\t\t\t %#Zx)\n", d, n);
   
   printf("\nThe results:\n");
   printf("\tInput text :     %s\n", argv[4]);
