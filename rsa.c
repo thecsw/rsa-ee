@@ -35,14 +35,14 @@ int main(int argc, char** argv) {
   }
   
   // Encrypting the message
-  mpz_powm(c, m, e, n);
+  mpz_powm(c, m, e, n); // c = pow(m, e) % n
 
   // Trying to make the cypher into a text
   char enc[64];
   mpz_export(enc, NULL, 1, 1, 0, 0, c);
 
   // Decrypting the message
-  mpz_powm(mt, c, d, n);
+  mpz_powm(mt, c, d, n); // mt = pow(c, d) % n
 
   // Converting the message from digits to characters
   char text[64];
