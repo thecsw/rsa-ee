@@ -44,7 +44,7 @@ int main(int argc, char** argv) {
 	gmp_printf("Checking if text value is bigger than the modulo... ");
 	if (mpz_cmp(m, n) > 0) {
 		printf("The text value is bigger than modulo parameter.\nExiting...");
-		abort();
+		return EXIT_FAILURE;
 	}
 	gmp_printf("Success.\n");
 	
@@ -95,5 +95,5 @@ int main(int argc, char** argv) {
 	mpz_clears(n, e, d, m, c, mt, NULL);
 	
 	printf("\nThank you for using rsa-ee!\nExiting...\n");
-	return 0;
+	return EXIT_SUCCESS;
 }
