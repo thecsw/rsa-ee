@@ -1,20 +1,30 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
 
-int main(int argc, char** argv) {
-	unsigned long long i, j, n;
-	if (argc!=2) {
-		printf("Please enter n.\n");
-		return 0;
-	}
-	n = atol(argv[1]);
-	for (i = 1; i <= n; i++) {
-		for (j = 1; j <= n; j++) {
-			if (j * i == n) {
-				printf("Primes for n are : %llu and %llu\n", i, j);
+void brute_force(int n) {
+	int p, q;
+	for (p = 2; p < n; p++) {
+		for (q = 2; q < n; q++) {
+			if (p * q == n) {
+			    printf("Primes for %d are : %d and %d\n", n, p, q);
+				return;
 			}
 		}
-		//printf("Progress: %llu\%\n", i);
 	}
-	return 0;
+}
+
+int main(int argc, char** argv) {
+	if (argc!=2) {
+		printf("Please enter n.\n");
+		return EXIT_FAILURE;
+	}
+	clock_t begin = clock();
+	int n;
+	n = atoi(argv[1]);
+	brute_force(n);
+	clock_t end = clock();
+	double time_spent = (double)(end - begin) / CLOCKS_PER_SEC;
+	printf("\nExecution time in seconds : %f\n", time_spent);
+	return EXIT_SUCCESS;
 }
