@@ -2,6 +2,35 @@
 #include <stdlib.h>
 #include <time.h>
 void not(){}
+void find_primes(int* arr, int size) {
+	int i = 0;
+	for (i = 0; i < size; i++) arr[i] = i;
+	for (i = 2; i < size; i++) {
+		if (arr[i] != 0) {
+			int j = i;
+			while (j + arr[i] < size) arr[j += arr[i]] = 0;
+		}
+	}
+}
+
+int count(int* arr, int size) {
+	int i, k = 0;
+	for (i = 0; i < size; i++) {
+		if (arr[i] != 0) k++;
+	}
+	return k;
+}
+
+void primes(int* arr, int size, int k, int* arg) {
+	int i, l = 0;
+	int j = 0;
+	for (i = 0; i < size; i++) {
+		if (arr[i] != 0) {
+			arg[j++] = arr[i];
+		}
+	}
+}
+
 int find_val(int* arr, int size, int val) {
 	int i = 0;
 	for (i = 0; i < size; i++) {
@@ -12,13 +41,18 @@ int find_val(int* arr, int size, int val) {
 
 void brute_force(int n) {
 	int p, q, i = 0;
-	int arr[100];
-	for (p = 2; p < n; p++) {
-		for (q = 2; q < n; q++) {
-			if ((p * q == n) && (find_val(arr, i, p) == 0)) {
-			    printf("Primes for %d are : %d and %d\n", n, p, q);
-				arr[i++] = p;
-				arr[i++] = q;
+	int* arr = (int*)malloc(sizeof(int)*n);
+	find_primes(arr, n);
+	int s = count(arr, n);
+	int* arg = (int*)malloc(sizeof(int)*s);
+	primes(arr, n, s, arg);
+	free(arr);
+	for (p = 0; p < s; p++) {
+		for (q = 0; q < s; q++) {
+			if (arg[p] * arg[q] == n) {
+				printf("Primes are : %d and %d", arg[p], arg[q]);
+				free(arg);
+				return;
 			}
 		}
 	}
