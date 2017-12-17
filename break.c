@@ -15,7 +15,7 @@ void brute_force(int n) {
 	int arr[100];
 	for (p = 2; p < n; p++) {
 		for (q = 2; q < n; q++) {
-			if ((p * q == n) && (find_val(arr, i, p) == 0)) {
+3			if ((p * q == n) && (find_val(arr, i, p) == 0)) {
 			    printf("Primes for %d are : %d and %d\n", n, p, q);
 				arr[i++] = p;
 				arr[i++] = q;
@@ -25,7 +25,7 @@ void brute_force(int n) {
 }
 
 int main(int argc, char** argv) {
-	if (argc!=2) {
+	if (argc != 2) {
 		printf("Please enter n.\n");
 		return EXIT_FAILURE;
 	}
