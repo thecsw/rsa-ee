@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+#include <math.h>
 void not(){}
 void find_primes(int* arr, int size) {
 	int i = 0;
@@ -58,6 +59,9 @@ int main(int argc, char** argv) {
 	clock_t begin = clock();
 	int n;
 	n = atoi(argv[1]);
+	double secs = (pow(n/log(n), 2)) / CLOCKS_PER_SEC;
+	int years = ceil(secs / (3600 * 24 * 365));
+	printf("In worst-case scenario, it will take %f seconds or %d years\n", secs, years);
 	brute_force(n);
 	clock_t end = clock();
 	double time_spent = (double)(end - begin) / CLOCKS_PER_SEC;
