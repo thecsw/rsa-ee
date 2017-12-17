@@ -31,14 +31,6 @@ void primes(int* arr, int size, int k, int* arg) {
 	}
 }
 
-int find_val(int* arr, int size, int val) {
-	int i = 0;
-	for (i = 0; i < size; i++) {
-		if (arr[i] == val) return 1;
-	}
-	return 0;
-}
-
 void brute_force(int n) {
 	int p, q, i = 0;
 	int* arr = (int*)malloc(sizeof(int)*n);
