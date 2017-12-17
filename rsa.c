@@ -43,7 +43,7 @@ int main(int argc, char** argv) {
 	// If the converted message's value is bigger than n, abort.
 	gmp_printf("Checking if text value is bigger than the modulo... ");
 	if (mpz_cmp(m, n) > 0) {
-		printf("The text value is bigger than modulo parameter.\nExiting...");
+		printf("The text value is bigger than modulo parameter.\nExiting...\n");
 		return EXIT_FAILURE;
 	}
 	gmp_printf("Success.\n");
