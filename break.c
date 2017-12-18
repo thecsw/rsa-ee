@@ -34,7 +34,7 @@ void primes(unsigned int* arr, unsigned int size, unsigned int k, unsigned int* 
 	}
 }
 // Brute 
-void brute_force(unsigned int n) {
+void brute_force(unsigned long long n) { //???
 	unsigned int p, q, i, j = 0;
 	unsigned int* arr = (unsigned int*)malloc(sizeof(unsigned int)*n);
 	find_primes(arr, n);
@@ -48,8 +48,8 @@ void brute_force(unsigned int n) {
 	free(arr);
 	for (p = 0; p < s; p++) {
 		for (q = 0; q < s; q++) {
-			if (arg[p] * arg[q] == n) {
-				printf("Primes are : %u and %u", arg[p], arg[q]);
+			if ((arg[p] * arg[q] == n) && (n / arg[p] == arg[q])) {
+				printf("Primes are : %u and %u\nIndexes : p - %u, q - %u\nn - %u\n", arg[p], arg[q], p, q, arg[p]*arg[q]);
 				free(arg);
 				return;
 			}
@@ -62,8 +62,11 @@ int main(int argc, char** argv) {
 	if (argc != 2) {
 		printf("Please enter n : ");
 		scanf("%u", &n);
-	} else {
+	} else if (argc == 2){
 		n = atoi(argv[1]);
+	} else {
+		printf("Please recheck your input.\nExiting...\n");
+		return EXIT_FAILURE;
 	}
 	clock_t begin = clock();
 	double secs = (pow(n/log(n), 2)) / SPEED;
