@@ -33,11 +33,11 @@ void primes(unsigned int* arr, unsigned int size, unsigned int k, unsigned int* 
 }
 
 void brute_force(unsigned int n) {
-	unsigned int p, q, i = 0;
-	unsigned int* arr = (unsigned int*)malloc(sizeof(int)*n);
+	unsigned int p, q, i, j = 0;
+	unsigned int* arr = (unsigned int*)malloc(sizeof(unsigned int)*n);
 	find_primes(arr, n);
 	unsigned int s = count(arr, n);
-	unsigned int* arg = (unsigned int*)malloc(sizeof(int)*s);
+	unsigned int* arg = (unsigned int*)malloc(sizeof(unsigned int)*s);
 	primes(arr, n, s, arg);
 	free(arr);
 	for (p = 0; p < s; p++) {
@@ -57,10 +57,10 @@ int main(int argc, char** argv) {
 		return EXIT_FAILURE;
 	}
 	clock_t begin = clock();
-	unsigned int n;
-	n = atoi(argv[1]);
+	unsigned int n = atoi(argv[1]);;
 	double secs = (pow(n/log(n), 2)) / CLOCKS_PER_SEC;
 	int days = ceil(secs / (3600 * 24));
+	(secs < 3600 * 24) ? days = 0 : not();
 	printf("In worst-case scenario, it will take %f seconds or %d day(s)\n", secs, days);
 	brute_force(n);
 	clock_t end = clock();
