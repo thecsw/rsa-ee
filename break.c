@@ -46,15 +46,18 @@ void brute_force(unsigned long long n) { //???
 	unsigned int* arg = (unsigned int*)malloc(sizeof(unsigned int)*s);
 	primes(arr, n, s, arg);
 	free(arr);
+	short int found = 0;
 	for (p = 0; p < s; p++) {
 		for (q = 0; q < s; q++) {
 			if ((arg[p] * arg[q] == n) && (n / arg[p] == arg[q])) {
 				printf("Primes are : %u and %u\nIndexes : p - %u, q - %u\nn - %u\n", arg[p], arg[q], p, q, arg[p]*arg[q]);
+				found = 1;
 				free(arg);
 				return;
 			}
 		}
 	}
+	(!found) ? printf("\nThe entered modulo cannot be factorized!(Bad modulo)\n") : not();
 }
 
 int main(int argc, char** argv) {
