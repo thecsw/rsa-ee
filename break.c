@@ -37,21 +37,31 @@ void primes(unsigned int* arr, unsigned int size, unsigned int k, unsigned int* 
 void brute_force(unsigned int n) {
 	unsigned int p, q, i, j = 0;
 	unsigned int* arr = (unsigned int*)malloc(sizeof(unsigned int)*n);
+
 	find_primes(arr, n);
 	unsigned int s = count(arr, n);
+
 	double secs = pow(s, 2) / SPEED;
 	int days = ceil(secs / (3600 * 24));
 	(secs < 3600 * 24) ? days = 0 : not();
-	printf("\nIn reality : \n\tIn worst-case scenario, it will take %f seconds or %d day(s)\n", secs, days);
+	printf("\tIn reality : \n\t\tIn worst-case scenario, it will take %f seconds or %d day(s)\n", secs, days);
 	unsigned int* arg = (unsigned int*)malloc(sizeof(unsigned int)*s);
+
 	primes(arr, n, s, arg);
+
 	free(arr);
+
 	short int found = 0;
+	int a, b = 0;
 	for (p = 0; p < s; p++) {
 		for (q = 0; q < s; q++) {
 			if ((arg[p] * arg[q] == n) && (n / arg[p] == arg[q])) {
-				printf("Primes are : %u and %u\nIndexes : p - %u, q - %u\nn - %u\n", arg[p], arg[q], p, q, arg[p]*arg[q]);
+				printf("\nPrimes are : %u and %u\n", arg[p], arg[q]);
 				found = 1;
+				printf("\nThe results and additional data :\n");
+				printf("\tNumber of primes generated to factorize %u : %u\n", n, s);
+				printf("\tPrime index of p (%u) : %u\n", arg[p], p);
+				printf("\tPrime index of q (%u) : %u\n", arg[q], q);
 				free(arg);
 				return;
 			}
@@ -76,7 +86,8 @@ int main(int argc, char** argv) {
 	double secs = (pow(n/log(n), 2)) / SPEED;
 	int days = ceil(secs / (3600 * 24));
 	(secs < 3600 * 24) ? days = 0 : not();
-	printf("\nApproximation : \n\tIn worst-case scenario, it will take %f seconds or %d day(s)\n", secs, days);
+	printf("\nExpectations:\n");
+	printf("\tApproximation : \n\t\tIn worst-case scenario, it will take %f seconds or %d day(s)\n", secs, days);
 	brute_force(n);
 	clock_t end = clock();
 	double time_spent = (double)(end - begin) / CLOCKS_PER_SEC;
