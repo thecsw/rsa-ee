@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <time.h>
 #include <math.h>
+#define SPEED 2528000000
 void not(){}
 void find_primes(unsigned int* arr, unsigned int size) {
 	unsigned int i = 0;
@@ -37,6 +38,10 @@ void brute_force(unsigned int n) {
 	unsigned int* arr = (unsigned int*)malloc(sizeof(unsigned int)*n);
 	find_primes(arr, n);
 	unsigned int s = count(arr, n);
+	double secs = pow(s, 2) / SPEED;
+	int days = ceil(secs / (3600 * 24));
+	(secs < 3600 * 24) ? days = 0 : not();
+	printf("\nIn reality : \n\tIn worst-case scenario, it will take %f seconds or %d day(s)\n", secs, days);
 	unsigned int* arg = (unsigned int*)malloc(sizeof(unsigned int)*s);
 	primes(arr, n, s, arg);
 	free(arr);
@@ -52,16 +57,18 @@ void brute_force(unsigned int n) {
 }
 
 int main(int argc, char** argv) {
+	unsigned int n;
 	if (argc != 2) {
-		printf("Please enter n.\n");
-		return EXIT_FAILURE;
+		printf("Please enter n : ");
+		scanf("%u", &n);
+	} else {
+		n = atoi(argv[1]);
 	}
 	clock_t begin = clock();
-	unsigned int n = atoi(argv[1]);;
-	double secs = (pow(n/log(n), 2)) / CLOCKS_PER_SEC;
+	double secs = (pow(n/log(n), 2)) / SPEED;
 	int days = ceil(secs / (3600 * 24));
 	(secs < 3600 * 24) ? days = 0 : not();
-	printf("In worst-case scenario, it will take %f seconds or %d day(s)\n", secs, days);
+	printf("\nApproximation : \n\tIn worst-case scenario, it will take %f seconds or %d day(s)\n", secs, days);
 	brute_force(n);
 	clock_t end = clock();
 	double time_spent = (double)(end - begin) / CLOCKS_PER_SEC;
