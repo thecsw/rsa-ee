@@ -34,7 +34,7 @@ void primes(unsigned int* arr, unsigned int size, unsigned int k, unsigned int* 
 	}
 }
 // Brute 
-void brute_force(unsigned long long n) { //???
+void brute_force(unsigned int n) {
 	unsigned int p, q, i, j = 0;
 	unsigned int* arr = (unsigned int*)malloc(sizeof(unsigned int)*n);
 	find_primes(arr, n);
