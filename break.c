@@ -65,12 +65,13 @@ int main(int argc, char** argv) {
 	if (argc != 2) {
 		printf("Please enter n : ");
 		scanf("%u", &n);
-	} else if (argc == 2){
+	} else if (argc == 2) {
 		n = atoi(argv[1]);
 	} else {
 		printf("Please recheck your input.\nExiting...\n");
 		return EXIT_FAILURE;
 	}
+	printf("\nThis is a program to factorize input n.\nIf you receive Segmentation error when executing, it means that you don\'t have enough RAM capacity to hold prime numbers\n");
 	clock_t begin = clock();
 	double secs = (pow(n/log(n), 2)) / SPEED;
 	int days = ceil(secs / (3600 * 24));
