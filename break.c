@@ -88,7 +88,7 @@ int main(int argc, char** argv) {
 	}
 	printf("\nThis is a program to factorize input n.\nIf you receive Segmentation error when executing, it means that you don\'t have enough RAM capacity to hold prime numbers\n");
 	printf("\nBefore starting the factorization, the system performance test should be performed.\n");
-	printf("It is necessary for accurate approximations of run-time.\n");
+	printf("It is necessary for accurate approximations of runtime.\n");
 	printf("Starting the performance test...\n");
 	unsigned int SPEED = performance();
 	printf("Finished successfully.\n");
