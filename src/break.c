@@ -8,22 +8,18 @@ void not(){}
 unsigned int performance() {
 	unsigned int i = 0;
 	clock_t begin = clock();
-	while (i < pow(10, 9)) {
-		i++;
-	}
+	while (i < pow(10, 9)) i++;
 	clock_t end = clock();
 	double time = (double)(end - begin) / CLOCKS_PER_SEC;
 	return pow(10, 9) / time;
 }
 
 void find_primes(unsigned int* arr, unsigned int size) {
-	unsigned int i = 0;
+	unsigned int i, j = 0;
 	for (i = 0; i < size; i++) arr[i] = i;
-	for (i = 2; i < size; i++) {
-		if (arr[i] != 0) {
-			unsigned int j = i;
+	for (i = 2; i < size; i++) if (arr[i] != 0) {
+			j = i;
 			while (j + arr[i] < size) arr[j += arr[i]] = 0;
-		}
 	}
 }
 // Counting number of non-zero values in array arr
@@ -42,25 +38,18 @@ void primes(unsigned int* arr, unsigned int size, unsigned int k, unsigned int* 
 void brute_force(unsigned int n, unsigned int speed) {
 	unsigned int p, q, i, j = 0;
 	unsigned int* arr = (unsigned int*)malloc(sizeof(unsigned int)*n);
-
 	find_primes(arr, n);
 	unsigned int s = count(arr, n);
-
 	double secs = pow(s, 2) / speed;
 	int days = ceil(secs / (3600 * 24));
 	(secs < 3600 * 24) ? days = 0 : not();
 	printf("\tIn reality : \n\t\tIn worst-case scenario, it will take %f seconds or %d day(s)\n", secs, days);
 	unsigned int* arg = (unsigned int*)malloc(sizeof(unsigned int)*s);
-
 	primes(arr, n, s, arg);
-
 	free(arr);
-
 	short int found = 0;
 	int a, b = 0;
-	for (p = 0; p < s; p++) {
-		for (q = 0; q < s; q++) {
-			if ((arg[p] * arg[q] == n) && (n / arg[p] == arg[q])) {
+	for (p = 0; p < s; p++) for (q = 0; q < s; q++) if ((arg[p] * arg[q] == n) && (n / arg[p] == arg[q])) {
 				printf("\nPrimes are : %u and %u\n", arg[p], arg[q]);
 				found = 1;
 				printf("\nThe results and additional data :\n");
@@ -70,8 +59,6 @@ void brute_force(unsigned int n, unsigned int speed) {
 				free(arg);
 				return;
 			}
-		}
-	}
 	(!found) ? printf("\nThe entered modulo cannot be factorized!(Bad modulo)\n") : not();
 }
 
@@ -80,9 +67,8 @@ int main(int argc, char** argv) {
 	if (argc != 2) {
 		printf("Please enter n : ");
 		scanf("%u", &n);
-	} else if (argc == 2) {
-		n = atoi(argv[1]);
-	} else {
+	} else if (argc == 2) n = atoi(argv[1]);
+	else {
 		printf("Please recheck your input.\nExiting...\n");
 		return EXIT_FAILURE;
 	}
