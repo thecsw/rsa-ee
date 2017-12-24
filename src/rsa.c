@@ -7,23 +7,23 @@ int main(int argc, char** argv) {
 	gmp_printf("\nProgram to demonstrate the work of RSA encryption algorithm.\n\n");
 	gmp_printf("Checking for the terminal input... ");
 	// We need exactly 5 variables. If not, abort.
-	char nc[64], ec[64], dc[64], mc[64];
+	char n_char[64], e_char[64], d_char[64], m_char[64];
 	if (argc != 5) {
 		printf("Please enter values of n, e and d, also the message.\nExiting...\n");
 	    printf("Please enter the value of modulo in decimal : ");
-		scanf("%s", nc);
+		scanf("%s", n_char);
 		printf("Please enter the value of public exponent in decimal : ");
-		scanf("%s", ec);
+		scanf("%s", e_char);
 		printf("Please enter the value of private exponent in decimal : ");
-		scanf("%s", dc);
+		scanf("%s", d_char);
 		printf("Please enter your message in ASCII : ");
-		scanf("%s", mc);
+		scanf("%s", m_char);
 		printf("Thank you for the input.\n");
 	} else {
-		strcpy(nc, argv[1]);
-		strcpy(ec, argv[2]);
-		strcpy(dc, argv[3]);
-		strcpy(mc, argv[4]);
+		strcpy(n_char, argv[1]);
+		strcpy(e_char, argv[2]);
+		strcpy(d_char, argv[3]);
+		strcpy(m_char, argv[4]);
 	}
 	gmp_printf("Success.\n");
 	
@@ -32,31 +32,31 @@ int main(int argc, char** argv) {
 	// c is the original converted message that is encrypted
 	// mt is the decrypted original converted message that was encrypted 
 	gmp_printf("Creating local variables... ");
-	mpz_t n, e, d, m, c, mt;
+	mpz_t n, e, d, converted_message, encrypted_message, decrypted_message;
 	gmp_printf("Success.\n");
 	
 	// Initializing variables, thus allocating memery for them
 	gmp_printf("Initializing local variables... ");
-	mpz_init(m);
-	mpz_init(c);
-	mpz_init(mt);
+	mpz_init(converted_message);
+	mpz_init(encrypted_message);
+	mpz_init(decrypted_message);
 	gmp_printf("Success.\n");
 	
 	// Initializing and setting variables with values from the terminal input
 	gmp_printf("Initializing and setting up local variables... ");
-	mpz_init_set_str(n, nc, 10);
-	mpz_init_set_str(e, ec, 10);
-	mpz_init_set_str(d, dc, 10);
+	mpz_init_set_str(n, n_char, 10);
+	mpz_init_set_str(e, e_char, 10);
+	mpz_init_set_str(d, d_char, 10);
 	gmp_printf("Success.\n");
 	
 	// Converting text into hexadecimal
 	gmp_printf("Converting text into hexadecimal... ");
-	mpz_import(m, strlen(mc), 1, 1, 0, 0, mc);
+	mpz_import(converted_message, strlen(m_char), 1, 1, 0, 0, m_char);
 	gmp_printf("Success.\n");
   
 	// If the converted message's value is bigger than n, abort.
 	gmp_printf("Checking if text value is bigger than the modulo... ");
-	if (mpz_cmp(m, n) > 0) {
+	if (mpz_cmp(converted_message, n) > 0) {
 		printf("The text value is bigger than modulo parameter.\nExiting...\n");
 		return EXIT_FAILURE;
 	}
@@ -64,24 +64,24 @@ int main(int argc, char** argv) {
 	
 	// Encrypting the message
 	gmp_printf("Encrypting the message... ");
-	mpz_powm(c, m, e, n); // c = pow(m, e) % n
+	mpz_powm(encrypted_message, converted_message, e, n); // encrypted_message = pow(m, e) % n
 	gmp_printf("Success.\n");
 	
 	// Trying to make the cypher into a text
 	gmp_printf("Trying to directly translate the encrypted text... ");
 	char enc[256];
-	mpz_export(enc, NULL, 1, 1, 0, 0, c);
+	mpz_export(enc, NULL, 1, 1, 0, 0, encrypted_message);
 	gmp_printf("Success.\n");
 	
 	// Decrypting the message
 	gmp_printf("Decrypting the message... ");
-	mpz_powm(mt, c, d, n); // mt = pow(c, d) % n
+	mpz_powm(decrypted_message, encrypted_message, d, n); // decrypted_message = pow(encrypted_message, d) % n
 	gmp_printf("Success.\n");
 	
 	// Converting the message from digits to characters
 	gmp_printf("Translating the decypted text into string... ");
 	char text[256];
-	mpz_export(text, NULL, 1, 1, 0, 0, mt);
+	mpz_export(text, NULL, 1, 1, 0, 0, decrypted_message);
 	gmp_printf("Success.\n");
 	
 	// Print out all the necessary data 
@@ -98,15 +98,15 @@ int main(int argc, char** argv) {
 	gmp_printf("\tPrivate key :   (%#Zx, \n\t\t\t %#Zx)\n", d, n);
 	
 	gmp_printf("\nThe results:\n");
-	gmp_printf("\tInput text            : %s\n", mc);
-	gmp_printf("\tConverted text        : %Zx\n", m);
-	gmp_printf("\tAttempt of decrypting : %Zx\n", c);
+	gmp_printf("\tInput text            : %s\n", m_char);
+	gmp_printf("\tConverted text        : %Zx\n", converted_message);
+	gmp_printf("\tAttempt of decrypting : %Zx\n", encrypted_message);
 	gmp_printf("\tEncrypted text        : %s\n", enc);
-	gmp_printf("\tDecrypted text        : %Zx\n", mt);
+	gmp_printf("\tDecrypted text        : %Zx\n", decrypted_message);
 	gmp_printf("\tOutput text           : %s\n", text);
 	
 	// Clearing the memory and resetting it to NULL
-	mpz_clears(n, e, d, m, c, mt, NULL);
+	mpz_clears(n, e, d, converted_message, encrypted_message, decrypted_message, NULL);
 	
 	printf("\nThank you for using rsa-ee!\nExiting...\n");
 	return EXIT_SUCCESS;
