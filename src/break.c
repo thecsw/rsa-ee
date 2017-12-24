@@ -2,9 +2,8 @@
 #include <stdlib.h>
 #include <time.h>
 #include <math.h>
+#include <string.h>
 void not(){}
-// By using sieve of eratosthenes, all non-primes in array arr are turned to 0
-
 unsigned int performance() {
 	unsigned int i = 0;
 	clock_t begin = clock();
@@ -13,7 +12,7 @@ unsigned int performance() {
 	double time = (double)(end - begin) / CLOCKS_PER_SEC;
 	return pow(10, 9) / time;
 }
-
+// By using sieve of eratosthenes, all non-primes in array arr are turned to 0
 void find_primes(unsigned int* arr, unsigned int size) {
 	unsigned int i, j = 0;
 	for (i = 0; i < size; i++) arr[i] = i;
@@ -72,18 +71,28 @@ int main(int argc, char** argv) {
 		printf("Please recheck your input.\nExiting...\n");
 		return EXIT_FAILURE;
 	}
+	char performance_test;
 	printf("\nThis is a program to factorize input n.\nIf you receive Segmentation error when executing, it means that you don\'t have enough RAM capacity to hold prime numbers\n");
-	printf("\nBefore starting the factorization, the system performance test should be performed.\n");
+	printf("\nBefore starting the factorization, the system performance test shoukd be performed.\n");
 	printf("It is necessary for accurate approximations of runtime.\n");
-	printf("Starting the performance test...\n");
-	unsigned int SPEED = performance();
-	printf("Finished successfully.\n");
-	printf("Operations per second for your computer : %d.\n", SPEED);	
+	printf("However if you don't want to run the performance test, it\'s up to you. Run it? (Y/n) ");
+	scanf(" %c", &performance_test);
+	unsigned int SPEED;
+	char reliability[15];
+	if (performance_test == 'Y') {
+		printf("Starting the performance test...\n");
+		SPEED = performance();
+		printf("Finished successfully.\n");
+		printf("Operations per second for your computer : %d.\n", SPEED);
+	} else {
+		SPEED = 400000000;
+		strcat(reliability, "(UNRELIABLE!)");
+	}
 	clock_t begin = clock();
 	double secs = (pow(n/log(n), 2)) / SPEED;
 	int days = ceil(secs / (3600 * 24));
 	(secs < 3600 * 24) ? days = 0 : not();
-	printf("\nExpectations:\n");
+	printf("\nExpectations: %s\n", reliability);
 	printf("\tApproximation : \n\t\tIn worst-case scenario, it will take %f seconds or %d day(s)\n", secs, days);
 	brute_force(n, SPEED);
 	clock_t end = clock();
