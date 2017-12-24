@@ -7,7 +7,7 @@ int main(int argc, char** argv) {
 	gmp_printf("\nProgram to demonstrate the work of RSA encryption algorithm.\n\n");
 	gmp_printf("Checking for the terminal input... ");
 	// We need exactly 5 variables. If not, abort.
-	char n_char[64], e_char[64], d_char[64], m_char[64];
+	char n_char[512], e_char[512], d_char[512], m_char[512];
 	if (argc != 5) {
 		printf("Please enter values of n, e and d, also the message.\nExiting...\n");
 		printf("Please enter the value of modulo in decimal : ");
