@@ -10,7 +10,7 @@ int main(int argc, char** argv) {
 	char n_char[64], e_char[64], d_char[64], m_char[64];
 	if (argc != 5) {
 		printf("Please enter values of n, e and d, also the message.\nExiting...\n");
-	    printf("Please enter the value of modulo in decimal : ");
+		printf("Please enter the value of modulo in decimal : ");
 		scanf("%s", n_char);
 		printf("Please enter the value of public exponent in decimal : ");
 		scanf("%s", e_char);
@@ -69,8 +69,8 @@ int main(int argc, char** argv) {
 	
 	// Trying to make the cypher into a text
 	gmp_printf("Trying to directly translate the encrypted text... ");
-	char enc[256];
-	mpz_export(enc, NULL, 1, 1, 0, 0, encrypted_message);
+	char attempted_decryption[256];
+	mpz_export(attempted_decryption, NULL, 1, 1, 0, 0, encrypted_message);
 	gmp_printf("Success.\n");
 	
 	// Decrypting the message
@@ -80,8 +80,8 @@ int main(int argc, char** argv) {
 	
 	// Converting the message from digits to characters
 	gmp_printf("Translating the decypted text into string... ");
-	char text[256];
-	mpz_export(text, NULL, 1, 1, 0, 0, decrypted_message);
+	char decrypted_final_text[256];
+	mpz_export(decrypted_final_text, NULL, 1, 1, 0, 0, decrypted_message);
 	gmp_printf("Success.\n");
 	
 	// Print out all the necessary data 
@@ -101,9 +101,9 @@ int main(int argc, char** argv) {
 	gmp_printf("\tInput text            : %s\n", m_char);
 	gmp_printf("\tConverted text        : %Zx\n", converted_message);
 	gmp_printf("\tAttempt of decrypting : %Zx\n", encrypted_message);
-	gmp_printf("\tEncrypted text        : %s\n", enc);
+	gmp_printf("\tEncrypted text        : %s\n", attempted_decryption);
 	gmp_printf("\tDecrypted text        : %Zx\n", decrypted_message);
-	gmp_printf("\tOutput text           : %s\n", text);
+	gmp_printf("\tOutput text           : %s\n", decrypted_final_text);
 	
 	// Clearing the memory and resetting it to NULL
 	mpz_clears(n, e, d, converted_message, encrypted_message, decrypted_message, NULL);
