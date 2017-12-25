@@ -46,11 +46,9 @@ void brute_force(unsigned int n, unsigned int speed) {
 	unsigned int* arg = (unsigned int*)malloc(sizeof(unsigned int)*s);
 	primes(arr, n, s, arg);
 	free(arr);
-	short int found = 0;
 	int a, b = 0;
 	for (p = 0; p < s; p++) for (q = 0; q < s; q++) if ((arg[p] * arg[q] == n) && (n / arg[p] == arg[q])) {
 				printf("\nPrimes are : %u and %u\n", arg[p], arg[q]);
-				found = 1;
 				printf("\nThe results and additional data :\n");
 				printf("\tNumber of primes generated to factorize %u : %u\n", n, s);
 				printf("\tPrime index of p (%u) : %u\n", arg[p], p);
@@ -58,7 +56,7 @@ void brute_force(unsigned int n, unsigned int speed) {
 				free(arg);
 				return;
 			}
-	(!found) ? printf("\nThe entered modulo cannot be factorized!(Bad modulo)\n") : not();
+	printf("\nThe entered modulo cannot be factorized!(Bad modulo)\n");
 }
 
 int main(int argc, char** argv) {
