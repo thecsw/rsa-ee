@@ -63,7 +63,7 @@ int main(int argc, char** argv) {
 	unsigned int n;
 	if (argc != 2) {
 		printf("Please enter n : ");
-		scanf("%u", &n);
+		scanf(" %u", &n);
 	} else if (argc == 2) n = atoi(argv[1]);
 	else {
 		printf("Please recheck your input.\nExiting...\n");
@@ -76,7 +76,7 @@ int main(int argc, char** argv) {
 	printf("However if you don't want to run the performance test, it\'s up to you. Run it? (Y/n) ");
 	scanf(" %c", &performance_test);
 	unsigned int SPEED;
-	char reliability[15];
+	char reliability[15] = "";
 	if (performance_test == 'Y') {
 		printf("Starting the performance test...\n");
 		SPEED = performance();
