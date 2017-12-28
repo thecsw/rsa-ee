@@ -6,7 +6,7 @@ Initial settings:
 	The d value: 5617843187844953170308463622230283376298685
 
 All following data will be shown as hexadecimal values.
-It s easier to present in this way than decimal.
+It is easier to present in this way than decimal.
 
 RSA keys:
 	Public key  : (0x10001, 
