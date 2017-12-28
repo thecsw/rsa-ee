@@ -91,7 +91,7 @@ int main(int argc, char** argv) {
 	gmp_printf("\tThe d value: %Zd\n", d);
 	
 	gmp_printf("\nAll following data will be shown as hexadecimal values.");
-	gmp_printf("\nIt's easier to present in this way than decimal.\n");
+	gmp_printf("\nIt is easier to present in this way than decimal.\n");
 	
 	gmp_printf("\nRSA keys:\n");
 	gmp_printf("\tPublic key  :   (%#Zx, \n\t\t\t %#Zx)\n", e, n);
