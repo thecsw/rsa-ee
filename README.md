@@ -1,6 +1,7 @@
 # RSA-EE
 
 This is a project used as demonstration of RSA and factorization for my diploma work. Everything is written in C.
+**DISCLAIMER: ALL CODE IS FOR DEMONSTRATION PURPOSES ONLY. DO NOT USE IT IN THE REAL WORLD TO ENCRYPT, DECRYPT, BRUTE-FORCE, SPY, GET UNAUTHORIZED ACCESS OR USE IT IN ANY OTHER PURPOSES, EXCEPT DEMONSTRATION.**
 
 ## Getting Started
 
@@ -43,7 +44,7 @@ We are linking GMP and math libraries during the compilation. Now all code is co
 
 There are 4 separate scripts that demonstrate a separate thing.
 
-### rsa
+### rsa.c
 
 This first script shows the work of RSA ancrypting algorithm. [Wikipedia](https://en.wikipedia.org/wiki/RSA_(cryptosystem)) explains how RSA works.
 
@@ -79,9 +80,9 @@ It is easier to present in this way than decimal.
 
 RSA keys:
 	Public key  :   (0x7, 
-        			 0x8f)
+        	0x8f)
 	Private key :   (0x67, 
-		        	 0x8f)
+		    0x8f)
 
 The results:
 	Input text            : Z
@@ -148,34 +149,101 @@ Where message "The cake is a lie" is being encrypted and decrypted. These values
 
 Cat it and try it yourself!
 
+### find_multiples.c
+
+Nothing interesting here, a program that takes some integer value and finds multiples. If there are only 2 multiples, so it is a prime!
+
+Example input:
+
+```
+$ ./find_multiples 40
+
+Program to find multiples of n
+
+1 is an 1 th multiple of 40
+2 is an 2 th multiple of 40
+4 is an 3 th multiple of 40
+5 is an 4 th multiple of 40
+8 is an 5 th multiple of 40
+10 is an 6 th multiple of 40
+20 is an 7 th multiple of 40
+40 is an 8 th multiple of 40
+
+There are 8 multiples of 40
+
+Execution time in seconds : 0.000329
+```
+
+### factor_with_integers.c
+
+Factorization problem is a problem where the task is to find p and q of n, where n = p * q.
+
+This script is a full brute-force, meaning that it will just take integers and guess one by one.
+
+An example from rsa.c. Let's take 143 to find 11 and 13.
+
+```
+$ ./factor_with_integers 143
+Primes for 143 are : 11 and 13
+
+Execution time in seconds : 0.000495
+```
+
+Quite fast, however the performance is O(n^2). If we use value 3737 that is 37*101
+
+```
+$ ./factor_with_integers 3737
+Primes for 3737 are : 37 and 101
+
+Execution time in seconds : 0.175458
+```
+
+It starts taking time.
+
+### factor_with_primes.c
+
+Because full brute-force of integers is slow, this script uses brute-force too, but it brute-forces only through prime numbers, so it is significantly faster. Because the script can work with large values, it will ask you to make a performance test to make a time estimation, of how long would it take to factorize the input.
+
+Same example with 3737
+
+```
+$ ./factor_with_primes 3737
+
+This is a program to factorize input n.
+If you receive Segmentation error when executing, it means that you don't have enough RAM capacity to hold prime numbers
+
+Before starting the factorization, the system performance test shoukd be performed.
+It is necessary for accurate approximations of runtime.
+However if you don't want to run the performance test, it's up to you. Run it? (Y/n) Y
+Starting the performance test...
+Finished successfully.
+Operations per second for your computer : 315582053.
+
+Expectations: 
+	Approximation : 
+		In worst-case scenario, it will take 0.000654 seconds or 0 day(s)
+	In reality : 
+		In worst-case scenario, it will take 0.000863 seconds or 0 day(s)
+
+Primes are : 37 and 101
+
+The results and additional data :
+	Number of primes generated to factorize 3737 : 522
+	Prime index of p (37) : 12
+	Prime index of q (101) : 26
+
+Execution time in seconds : 0.000426
+```
+
+It is significantly faster. You can use it.
+
 ## Source code
 
-I know that the script is little bit messy, I tried. Simple and small, but it works!
-
-Now, I want to give little insight on the code. If you want to take posts from any other subreddit, in the main source file rjokes.py, change this variable's value to any subrreddit you like
-
-```python
-sub = 'Jokes' # Means it will extract posts from reddit.com/r/Jokes
-```
-
-Also, this script takes only the best jokes of the last 24 hours and updates them every hour. If you want to change the source of jokes, change this line
-
-```python
-hot_python = subreddit.top('day', limit=LIMIT)
-```
-
-LIMIT is the amount of posts to extract
-
-Well and also the time interval is in seconds
-
-```python
-time.sleep(3600)
-```
+Code is not difficult. I have optimized it the best I could. Code is heavily commented, so shouldn't be a problem understanding it.
 
 ## Built With
 
-* [telepot](https://github.com/nickoala/telepot) - python framework for Telegram Bot API.
-* [praw](https://github.com/praw-dev/praw) - Python Reddit API Wrapper.
+* [GMP](https://gmp.org) - C and C++ library to work with numbers with arbitrary precision.
 
 ## Authors
 
