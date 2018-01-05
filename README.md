@@ -80,9 +80,9 @@ It is easier to present in this way than decimal.
 
 RSA keys:
 	Public key  :   (0x7, 
-        	0x8f)
+			 0x8f)
 	Private key :   (0x67, 
-		    0x8f)
+			 0x8f)
 
 The results:
 	Input text            : Z
@@ -94,6 +94,7 @@ The results:
 
 Thank you for using rsa-ee!
 Exiting...
+
 ```
 
 Where "Z" is being encrypted into "3" and then back to "Z"
