@@ -12,6 +12,7 @@ unsigned int performance() {
 	double time = (double)(end - begin) / CLOCKS_PER_SEC;
 	return pow(10, 9) / time;
 }
+
 // By using sieve of eratosthenes, all non-primes in array arr are turned to 0
 void find_primes(unsigned int* arr, unsigned int size) {
 	unsigned int i, j = 0;
@@ -21,18 +22,21 @@ void find_primes(unsigned int* arr, unsigned int size) {
 			while (j + arr[i] < size) arr[j += arr[i]] = 0;
 	}
 }
+
 // Counting number of non-zero values in array arr
 int count(unsigned int* arr, unsigned int size) {
 	unsigned int i, k = 0;
 	for (i = 0; i < size; i++) if (arr[i] != 0) k++;
 	return k;
 }
+
 // Copies all primes from array arr to new array arg
 void primes(unsigned int* arr, unsigned int size, unsigned int* arg) {
 	unsigned int i, l = 0;
 	unsigned int j = 0;
 	for (i = 0; i < size; i++) if (arr[i] != 0) arg[j++] = arr[i];
 }
+
 // Brute 
 void brute_force(unsigned int n, unsigned int speed) {
 	unsigned int p, q, i, j = 0;
