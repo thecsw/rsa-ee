@@ -74,6 +74,7 @@ int main(int argc, char** argv) {
 		printf("Please recheck your input.\nExiting...\n");
 		return EXIT_FAILURE;
 	}
+
 	char performance_test;
 	printf("\nThis is a program to factorize input n.\nIf you receive Segmentation error when executing, it means that you don\'t have enough RAM capacity to hold prime numbers\n");
 	printf("\nBefore starting the factorization, the system performance test shoukd be performed.\n");
@@ -91,6 +92,7 @@ int main(int argc, char** argv) {
 		SPEED = 400000000;
 		strcat(reliability, "(UNRELIABLE!)");
 	}
+	
 	clock_t begin = clock();
 	double secs = (pow(n/log(n), 2)) / SPEED;
 	int days = ceil(secs / (3600 * 24));
