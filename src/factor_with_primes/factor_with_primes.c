@@ -28,7 +28,7 @@ int count(unsigned int* arr, unsigned int size) {
 	return k;
 }
 // Copies all primes from array arr to new array arg
-void primes(unsigned int* arr, unsigned int size, unsigned int k, unsigned int* arg) {
+void primes(unsigned int* arr, unsigned int size, unsigned int* arg) {
 	unsigned int i, l = 0;
 	unsigned int j = 0;
 	for (i = 0; i < size; i++) if (arr[i] != 0) arg[j++] = arr[i];
@@ -44,7 +44,7 @@ void brute_force(unsigned int n, unsigned int speed) {
 	(secs < 3600 * 24) ? days = 0 : not();
 	printf("\tIn reality : \n\t\tIn worst-case scenario, it will take %f seconds or %d day(s)\n", secs, days);
 	unsigned int* arg = (unsigned int*)malloc(sizeof(unsigned int)*s);
-	primes(arr, n, s, arg);
+	primes(arr, n, arg);
 	free(arr);
 	int a, b = 0;
 	for (p = 0; p < s; p++) for (q = 0; q < s; q++) if ((arg[p] * arg[q] == n) && (n / arg[p] == arg[q])) {
