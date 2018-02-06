@@ -1,7 +1,7 @@
 #include<stdio.h>
 #include<time.h>
 #include <stdlib.h>
-voidnot(){}
+void not(){}
 int find_val(int* arr, int size, int val) {
 	int i = 0;
 	for(i = 0; i < size; i++) if(arr[i] == val) return 1;

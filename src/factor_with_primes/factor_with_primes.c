@@ -4,6 +4,7 @@
 #include <math.h>
 #include <string.h>
 void not(){}
+
 unsigned int performance() {
 	unsigned int i = 0;
 	clock_t begin = clock();
