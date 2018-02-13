@@ -6,9 +6,8 @@
 int main(int argc, char** argv) {
 	gmp_printf("\nProgram to demonstrate the work of RSA encryption algorithm.\n\n");
 	gmp_printf("Checking for the terminal input... ");
-	// We need exactly 5 variables. If not, abort.
-	char n_char[512], e_char[512], d_char[512], m_char[512];
-	if (argc != 5) {
+    char n_char[512], e_char[512], d_char[512], m_char[512];
+	if (argc != 5) {			/* We need exactly 5 arguments to proceed. If they are not provided, ask. */
 		printf("Please enter values of n, e and d, also the message.\nExiting...\n");
 		printf("Please enter the value of modulo in decimal : ");
 		scanf("%s", n_char);
@@ -27,10 +26,13 @@ int main(int argc, char** argv) {
 	}
 	gmp_printf("Success.\n");
 	
-	// Declaring varibles, ned is obvious, while:
-	// m is the original converted message
-	// c is the original converted message that is encrypted
-	// mt is the decrypted original converted message that was encrypted 
+	/*---------------------------------------------------------------
+	Declaring varibles, ned is obvious, while:
+	m is the original converted message
+	c is the original converted message that is encrypted
+	mt is the decrypted original converted message that was encrypted 
+	----------------------------------------------------------------*/
+
 	gmp_printf("Creating local variables... ");
 	mpz_t n, e, d, converted_message, encrypted_message, decrypted_message;
 	gmp_printf("Success.\n");
