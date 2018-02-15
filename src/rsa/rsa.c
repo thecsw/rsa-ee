@@ -32,12 +32,12 @@ int main(int argc, char** argv) {
 	c is the original converted message that is encrypted
 	mt is the decrypted original converted message that was encrypted 
 	----------------------------------------------------------------*/
-
+	
 	gmp_printf("Creating local variables... ");
 	mpz_t n, e, d, converted_message, encrypted_message, decrypted_message;
 	gmp_printf("Success.\n");
-	
-	// Initializing variables, thus allocating memery for them
+    
+	/* Initializing variables, thus allocating memery for them */
 	gmp_printf("Initializing local variables... ");
 	mpz_init(converted_message);
 	mpz_init(encrypted_message);
