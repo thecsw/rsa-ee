@@ -30,11 +30,11 @@ void find_primes(unsigned int *arr, unsigned int size) {
 
 // Counting number of non-zero values in array arr
 int count(unsigned int *arr, unsigned int size) {
-  unsigned int i, k = 0;
-  for (i = 0; i < size; i++)
-	  if (arr[i] != 0)
-		  k++;
-  return k;
+	unsigned int i, k = 0;
+	for (i = 0; i < size; i++)
+		if (arr[i] != 0)
+			k++;
+	return k;
 }
 
 // Copies all primes from array arr to new array arg
@@ -87,7 +87,7 @@ int main(int argc, char **argv) {
 		printf("Please recheck your input.\nExiting...\n");
 		return EXIT_FAILURE;
 	}
-	
+
 	char performance_test;
 	printf("\nThis is a program to factorize input n.\nIf you receive "
 		   "Segmentation error when executing, it means that you don\'t have "
@@ -109,7 +109,7 @@ int main(int argc, char **argv) {
 		SPEED = 400000000;
 		strcat(reliability, "(UNRELIABLE!)");
 	}
-	
+
 	clock_t begin = clock();
 	double secs = (pow(n / log(n), 2)) / SPEED;
 	int days = ceil(secs / (3600 * 24));
