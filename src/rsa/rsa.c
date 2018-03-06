@@ -1,6 +1,6 @@
 #include "gmp.h"
-#include <stdio.h>
 #include <stdlib.h>
+#include <stdio.h>
 #include <string.h>
 
 int main(int argc, char **argv) {
@@ -10,7 +10,7 @@ int main(int argc, char **argv) {
 	if (argc != 5) { /* We need exactly 5 arguments to proceed. If they are not
 				provided, ask. */
 		printf("Please enter values of n, e and d, also the "
-			   "message.\nExiting...\n");
+			   "message.\n");
 		printf("Please enter the value of modulo in decimal : ");
 		scanf("%s", n_char);
 		printf("Please enter the value of public exponent in decimal : ");
