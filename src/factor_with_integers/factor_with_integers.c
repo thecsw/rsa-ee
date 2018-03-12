@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <time.h>
 void not() {}
+
 int find_val(int *arr, int size, int val) {
 	int i = 0;
 	for (i = 0; i < size; i++)
