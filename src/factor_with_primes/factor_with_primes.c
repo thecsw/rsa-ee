@@ -8,6 +8,7 @@ void not() {}
 unsigned int performance() {
 	unsigned int i = 0;
 	clock_t begin = clock();
+
 	while (i < pow(10, 9))
 		i++;
 	clock_t end = clock();
@@ -18,8 +19,10 @@ unsigned int performance() {
 // By using sieve of eratosthenes, all non-primes in array arr are turned to 0
 void find_primes(unsigned int *arr, unsigned int size) {
 	unsigned int i, j = 0;
+
 	for (i = 0; i < size; i++)
 		arr[i] = i;
+
 	for (i = 2; i < size; i++)
 		if (arr[i] != 0) {
 			j = i;
@@ -31,6 +34,7 @@ void find_primes(unsigned int *arr, unsigned int size) {
 // Counting number of non-zero values in array arr
 int count(unsigned int *arr, unsigned int size) {
 	unsigned int i, k = 0;
+
 	for (i = 0; i < size; i++)
 		if (arr[i] != 0)
 			k++;
@@ -41,6 +45,7 @@ int count(unsigned int *arr, unsigned int size) {
 void primes(unsigned int *arr, unsigned int size, unsigned int *arg) {
 	unsigned int i, l = 0;
 	unsigned int j = 0;
+
 	for (i = 0; i < size; i++)
 		if (arr[i] != 0)
 			arg[j++] = arr[i];
@@ -50,7 +55,9 @@ void primes(unsigned int *arr, unsigned int size, unsigned int *arg) {
 void brute_force(unsigned int n, unsigned int speed) {
 	unsigned int p, q, i, j = 0;
 	unsigned int *arr = (unsigned int *)malloc(sizeof(unsigned int) * n);
+
 	find_primes(arr, n);
+
 	unsigned int s = count(arr, n);
 	double secs = pow(s, 2) / speed;
 	int days = ceil(secs / (3600 * 24));
@@ -58,10 +65,12 @@ void brute_force(unsigned int n, unsigned int speed) {
 	printf("\tIn reality : \n\t\tIn worst-case scenario, it will take %f seconds "
 		   "or %d day(s)\n",
 		   secs, days);
+
 	unsigned int *arg = (unsigned int *)malloc(sizeof(unsigned int) * s);
 	primes(arr, n, arg);
 	free(arr);
 	int a, b = 0;
+
 	for (p = 0; p < s; p++)
 		for (q = 0; q < s; q++)
 			if ((arg[p] * arg[q] == n) && (n / arg[p] == arg[q])) {
@@ -73,11 +82,13 @@ void brute_force(unsigned int n, unsigned int speed) {
 				free(arg);
 				return;
 			}
+
 	printf("\nThe entered modulo cannot be factorized!(Bad modulo)\n");
 }
 
 int main(int argc, char **argv) {
 	unsigned int n;
+
 	if (argc != 2) {
 		printf("Please enter n : ");
 		scanf(" %u", &n);
@@ -97,6 +108,7 @@ int main(int argc, char **argv) {
 	printf("It is necessary for accurate approximations of runtime.\n");
 	printf("However if you don't want to run the performance test, it\'s up to "
 		   "you. Run it? (Y/n) ");
+
 	scanf(" %c", &performance_test);
 	unsigned int SPEED;
 	char reliability[15] = "";
@@ -118,7 +130,9 @@ int main(int argc, char **argv) {
 	printf("\tApproximation : \n\t\tIn worst-case scenario, it will take %f "
 		   "seconds or %d day(s)\n",
 		   secs, days);
+
 	brute_force(n, SPEED);
+
 	clock_t end = clock();
 	double time_spent = (double)(end - begin) / CLOCKS_PER_SEC;
 	printf("\nExecution time in seconds : %f\n", time_spent);
