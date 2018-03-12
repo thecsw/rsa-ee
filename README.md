@@ -31,11 +31,13 @@ Now after the GMP library has been installed, it's time to compile.
 Compilation can be done with gcc and clang C compilers. To do that go to the folder and follow these steps
 ```bash
 cd rsa-ee/src
-gcc rsa.c -lgmp -o rsa
-gcc find_multiples.c -o find_multiples
-gcc factor_with_primes.c -lm -o factor_with_primes
-gcc factor_with_integers.c -o factor_with_integers
+gcc -O3 rsa.c -lgmp -o rsa
+gcc -O3 find_multiples.c -o find_multiples
+gcc -O3 factor_with_primes.c -lm -o factor_with_primes
+gcc -O3 factor_with_integers.c -o factor_with_integers
 ```
+
+Please note that we are using full code optimization by compiler so it will go to the moon. Slightly slower compilation speed.
 
 We are linking GMP and math libraries during the compilation. Now all code is compiled and is ready to be used.
 
