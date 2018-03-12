@@ -1,3 +1,6 @@
+# emacs backup files
+.saves
+
 # Prerequisites
 *.d
 
