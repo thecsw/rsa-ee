@@ -1,0 +1,32 @@
+ 
+thecsw@lenna ~/dcs/gits/rsa-ee/src/factor_with_primes                                         [21:06:41] 
+> $ gcc -O3 -lm factor_with_primes.c 
+gcc -O3 -lm factor_with_primes.c 
+ 
+thecsw@lenna ~/dcs/gits/rsa-ee/src/factor_with_primes                                         [21:07:11] 
+> $ ./a.out 70003337
+
+This is a program to factorize input n.
+If you receive Segmentation error when executing, it means that you don't have enough RAM capacity to hold prime numbers
+
+Before starting the factorization, the system performance test shoukd be performed.
+It is necessary for accurate approximations of runtime.
+However if you don't want to run the performance test, it's up to you. Run it? (Y/n) Y
+Starting the performance test...
+Finished successfully.
+Operations per second for your computer : 640449646.
+
+Expectations: 
+	Approximation : 
+		In worst-case scenario, it will take 23448.878468 seconds or 0 day(s)
+	In reality : 
+		In worst-case scenario, it will take 26481.265587 seconds or 0 day(s)
+
+Primes are : 7927 and 8831
+
+The results and additional data :
+	Number of primes generated to factorize 70003337 : 4118242
+	Prime index of p (7927) : 1001
+	Prime index of q (8831) : 1100
+
+Execution time in seconds : 15.504832
