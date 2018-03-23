@@ -3,6 +3,74 @@
 #include <stdlib.h>
 #include <string.h>
 #include <time.h>
+
+/* FUNCTION PROTOTYPES */
+void not();
+
+unsigned int performance();
+
+int count(unsigned int *arr, unsigned int size);
+
+void brute_force(unsigned int n, unsigned int speed);
+
+void find_primes(unsigned int *arr, unsigned int size);
+
+void primes(unsigned int *arr, unsigned int size, unsigned int *arg);
+	
+/* MAIN FUNCTION */
+int main(int argc, char **argv) {
+	unsigned int n;
+
+	if (argc != 2) {
+		printf("Please enter n : ");
+		scanf(" %u", &n);
+	} else if (argc == 2)
+		n = atoi(argv[1]);
+	else {
+		printf("Please recheck your input.\nExiting...\n");
+		return EXIT_FAILURE;
+	}
+
+	char performance_test;
+	printf("\nThis is a program to factorize input n.\nIf you receive "
+		   "Segmentation error when executing, it means that you don\'t have "
+		   "enough RAM capacity to hold prime numbers\n");
+	printf("\nBefore starting the factorization, the system performance test "
+		   "shoukd be performed.\n");
+	printf("It is necessary for accurate approximations of runtime.\n");
+	printf("However if you don't want to run the performance test, it\'s up to "
+		   "you. Run it? (Y/n) ");
+
+	scanf(" %c", &performance_test);
+	unsigned int SPEED;
+	char reliability[15] = "";
+	if (performance_test == 'Y') {
+		printf("Starting the performance test...\n");
+		SPEED = performance();
+		printf("Finished successfully.\n");
+		printf("Operations per second for your computer : %d.\n", SPEED);
+	} else {
+		SPEED = 400000000;
+		strcat(reliability, "(UNRELIABLE!)");
+	}
+
+	clock_t begin = clock();
+	double secs = (pow(n / log(n), 2)) / SPEED;
+	int days = ceil(secs / (3600 * 24));
+	(secs < 3600 * 24) ? days = 0 : not();
+	printf("\nExpectations: %s\n", reliability);
+	printf("\tApproximation : \n\t\tIn worst-case scenario, it will take %f "
+		   "seconds or %d day(s)\n",
+		   secs, days);
+
+	brute_force(n, SPEED);
+
+	clock_t end = clock();
+	double time_spent = (double)(end - begin) / CLOCKS_PER_SEC;
+	printf("\nExecution time in seconds : %f\n", time_spent);
+	return EXIT_SUCCESS;
+}
+
 void not() {}
 
 unsigned int performance() {
@@ -86,55 +154,3 @@ void brute_force(unsigned int n, unsigned int speed) {
 	printf("\nThe entered modulo cannot be factorized!(Bad modulo)\n");
 }
 
-int main(int argc, char **argv) {
-	unsigned int n;
-
-	if (argc != 2) {
-		printf("Please enter n : ");
-		scanf(" %u", &n);
-	} else if (argc == 2)
-		n = atoi(argv[1]);
-	else {
-		printf("Please recheck your input.\nExiting...\n");
-		return EXIT_FAILURE;
-	}
-
-	char performance_test;
-	printf("\nThis is a program to factorize input n.\nIf you receive "
-		   "Segmentation error when executing, it means that you don\'t have "
-		   "enough RAM capacity to hold prime numbers\n");
-	printf("\nBefore starting the factorization, the system performance test "
-		   "shoukd be performed.\n");
-	printf("It is necessary for accurate approximations of runtime.\n");
-	printf("However if you don't want to run the performance test, it\'s up to "
-		   "you. Run it? (Y/n) ");
-
-	scanf(" %c", &performance_test);
-	unsigned int SPEED;
-	char reliability[15] = "";
-	if (performance_test == 'Y') {
-		printf("Starting the performance test...\n");
-		SPEED = performance();
-		printf("Finished successfully.\n");
-		printf("Operations per second for your computer : %d.\n", SPEED);
-	} else {
-		SPEED = 400000000;
-		strcat(reliability, "(UNRELIABLE!)");
-	}
-
-	clock_t begin = clock();
-	double secs = (pow(n / log(n), 2)) / SPEED;
-	int days = ceil(secs / (3600 * 24));
-	(secs < 3600 * 24) ? days = 0 : not();
-	printf("\nExpectations: %s\n", reliability);
-	printf("\tApproximation : \n\t\tIn worst-case scenario, it will take %f "
-		   "seconds or %d day(s)\n",
-		   secs, days);
-
-	brute_force(n, SPEED);
-
-	clock_t end = clock();
-	double time_spent = (double)(end - begin) / CLOCKS_PER_SEC;
-	printf("\nExecution time in seconds : %f\n", time_spent);
-	return EXIT_SUCCESS;
-}
