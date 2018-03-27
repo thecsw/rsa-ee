@@ -111,7 +111,7 @@ int count(unsigned int *arr, unsigned int size) {
 
 // Copies all primes from array arr to new array arg
 void primes(unsigned int *arr, unsigned int size, unsigned int *arg) {
-	unsigned int i, l = 0;
+	unsigned int i = 0;
 	unsigned int j = 0;
 
 	for (i = 0; i < size; i++)
@@ -121,7 +121,7 @@ void primes(unsigned int *arr, unsigned int size, unsigned int *arg) {
 
 // Brute
 void brute_force(unsigned int n, unsigned int speed) {
-	unsigned int p, q, i, j = 0;
+	unsigned int p, q = 0;
 	unsigned int *arr = (unsigned int *)malloc(sizeof(unsigned int) * n);
 
 	find_primes(arr, n);
@@ -137,8 +137,6 @@ void brute_force(unsigned int n, unsigned int speed) {
 	unsigned int *arg = (unsigned int *)malloc(sizeof(unsigned int) * s);
 	primes(arr, n, arg);
 	free(arr);
-	int a, b = 0;
-
 	for (p = 0; p < s; p++)
 		for (q = 0; q < s; q++)
 			if ((arg[p] * arg[q] == n) && (n / arg[p] == arg[q])) {
