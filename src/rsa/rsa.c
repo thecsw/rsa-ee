@@ -3,26 +3,26 @@
 #include <stdio.h>
 #include <string.h>
 
-int
-main(int argc,
-	 char **argv)
+int main(int argc, char **argv)
 {
-		gmp_printf("\nProgram to demonstrate the work of RSA encryption algorithm.\n\n");
-		gmp_printf("Checking for the terminal input... ");
-		char n_char[512], e_char[512], d_char[512], m_char[512];
-		if (argc != 5) { /* We need exactly 5 arguments to proceed. If they are not
-							provided, ask. */
-				printf("Please enter values of n, e and d, also the "
-					   "message.\n");
-				printf("Please enter the value of modulo in decimal : ");
-				scanf("%s", n_char);
-				printf("Please enter the value of public exponent in decimal : ");
-				scanf("%s", e_char);
-				printf("Please enter the value of private exponent in decimal : ");
-				scanf("%s", d_char);
-				printf("Please enter your message in ASCII : ");
-				scanf("%s", m_char);
-				printf("Thank you for the input.\n");
+	gmp_printf(
+		"\nProgram to demonstrate the work of RSA encryption algorithm.\n\n");
+	gmp_printf("Checking for the terminal input... ");
+	char n_char[512], e_char[512], d_char[512], m_char[512];
+	if (argc !=
+	    5) { /* We need exactly 5 arguments to proceed. If they are not
+					provided, ask. */
+		printf("Please enter values of n, e and d, also the "
+		       "message.\n");
+		printf("Please enter the value of modulo in decimal : ");
+		scanf("%s", n_char);
+		printf("Please enter the value of public exponent in decimal : ");
+		scanf("%s", e_char);
+		printf("Please enter the value of private exponent in decimal : ");
+		scanf("%s", d_char);
+		printf("Please enter your message in ASCII : ");
+		scanf("%s", m_char);
+		printf("Thank you for the input.\n");
 		} else {
 				strcpy(n_char, argv[1]);
 				strcpy(e_char, argv[2]);
@@ -115,7 +115,8 @@ main(int argc,
 		gmp_printf("\tOutput text           : %s\n", decrypted_final_text);
 		
 		// Clearing the memory and resetting it to NULL
-		mpz_clears(n, e, d, converted_message, encrypted_message, decrypted_message, NULL);
+		mpz_clears(n, e, d, converted_message, encrypted_message,
+				   decrypted_message, NULL);
 		
 		printf("\nThank you for using rsa-ee!\nExiting...\n");
 		return EXIT_SUCCESS;
