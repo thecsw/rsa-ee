@@ -5,7 +5,6 @@
 #include <time.h>
 
 /* FUNCTION PROTOTYPES */
-void not();
 
 unsigned int performance();
 
@@ -59,7 +58,7 @@ int main(int argc, char **argv)
 	clock_t begin = clock();
 	double secs = (pow(n / log(n), 2)) / SPEED;
 	int days = ceil(secs / (3600 * 24));
-	(secs < 3600 * 24) ? days = 0 : not();
+	(secs < 3600 * 24) ? days = 0 : "";
 	printf("\nExpectations: %s\n", reliability);
 	printf("\tApproximation : \n\t\tIn worst-case scenario, it will take %f "
 	       "seconds or %d day(s)\n",
@@ -71,10 +70,6 @@ int main(int argc, char **argv)
 	double time_spent = (double)(end - begin) / CLOCKS_PER_SEC;
 	printf("\nExecution time in seconds : %f\n", time_spent);
 	return EXIT_SUCCESS;
-}
-
-void not()
-{
 }
 
 unsigned int performance()
@@ -138,7 +133,7 @@ void brute_force(unsigned int n, unsigned int speed)
 	unsigned int s = count(arr, n);
 	double secs = pow(s, 2) / speed;
 	int days = ceil(secs / (3600 * 24));
-	(secs < 3600 * 24) ? days = 0 : not();
+	(secs < 3600 * 24) ? days = 0 : "";
 	printf("\tIn reality : \n\t\tIn worst-case scenario, it will take %f seconds "
 	       "or %d day(s)\n",
 	       secs, days);
