@@ -2,8 +2,6 @@
 #include <stdlib.h>
 #include <time.h>
 
-void not();
-
 void brute_force(int n);
 
 int main(int argc, char **argv)
@@ -32,9 +30,6 @@ void brute_force(int n)
 				       q);
 				return;
 			}
-	printf("The given modulo is a prime. Bailing out...\n");
-}
 
-void not()
-{
+	printf("The given modulo is a prime. Bailing out...\n");
 }
